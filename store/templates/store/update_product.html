@@ -1,0 +1,29 @@
+{% extends 'store/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  
+  <div class="row">
+      <div class="col-md-3 col-sm-1">
+
+      </div>
+      <div class="col-md-6 col-sm-10">
+        <form  method="POST"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend> Update product </legend>
+                  {{form|crispy}}
+            </fieldset>
+            <div class="form-group ">
+                <button type="submit"  class="btn btn-primary d-flex justify-content-center"><span class="material-icons">
+                    update
+                    </span>Update</button>
+            </div>
+        </form>
+
+      </div>
+      <div class="col-md-3 col-sm-1">
+
+      </div>
+  </div>
+
+{% endblock %}

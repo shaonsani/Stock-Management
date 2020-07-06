@@ -1,0 +1,27 @@
+{% extends 'store/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  
+  <div class="row">
+      <div class="col-md-3 col-sm-1">
+
+      </div>
+      <div class="col-md-6 col-sm-10">
+        <form  method="POST" action="">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend> Product </legend>
+                  {{form|crispy}}
+            </fieldset>
+            <div class="form-group ">
+                <button type="submit"  class="btn btn-success d-flex justify-content-center"> <span class="material-icons">add_circle</span>Add Item </button>
+            </div>
+        </form>
+
+      </div>
+      <div class="col-md-3 col-sm-1">
+
+      </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'store/main.html' %}
+{% load static  %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-sm-4">
+
+    </div>
+    <div class="col-sm-4 offset-xs-4">
+        <div class="card" >
+            <img class="card-img-top" style="width:75%;height:80%px;" src="{{data.image.url}}" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-text d-flex justify-content-center mt-2">{{ data.name }}</p>
+              <hr>
+              <div class="row">
+                  <div class="col-md-8 col-sm-offset-2">
+                    <form method="POST">
+                     {% csrf_token %}
+                        
+                            <div class="form-group">
+                                {{form|crispy}}
+                            </div>
+                            <div>
+                                <button class="btn btn-success rounded-left rounded-right" type="submit"   style="text-decoration: none;">Sell</button>
+                            </div>
+                     
+                       
+                       
+                    </form>
+                  </div>
+            
+              </div>
+            </div>
+           
+        </div>
+
+    </div>
+    <div class="col-sm-4">
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+

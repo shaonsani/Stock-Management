@@ -1,0 +1,88 @@
+{% extends 'store/main.html' %}
+{% load static  %}
+
+{% block search %}
+
+    <div class="row justify-content-center">
+         <div class="col-2">
+            
+          </div>
+          <div class="col-8">
+            <form class="form-inline justify-content-center" method="GET">
+                <input class="form-control rounded-left" type="text" placeholder="Search" aria-label="Search" name="search_item" value="{{request.GET.search_item}}">
+                <button class="btn btn-outline-success  rounded-left rounded-right ml-2" type="submit">Search</button>
+            </form>
+          </div>
+          <div class="col-2">
+            
+          </div>
+    </div>
+
+    
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% for product in products %}
+    <div class="col-sm-6 col-md-3 col-lg-3 ">
+
+        <img class="thumbnail" src="{{ product.image.url}}">
+        <div class="mt-2">
+               <div class=" d-flex justify-content-between">
+                  <div class="ml-1">
+                    <p  style=" font-size: 14px;">{{product.name}}</p>
+                   </div>
+                        
+                    {% if user.is_authenticated %}
+                         {% if  product.quantity > 0 %}
+                         <div>
+                            <p  style="color:darkgreen;  font-size: 13px;">Quantity: {{product.quantity}}</p>
+                         </div>
+                        
+                         {% else %}
+                         <div>
+                            <p  style="color:darkred;  font-size: 13px;">Out Of Stock</p>
+                         </div>
+                         
+                         {% endif %}
+                    
+                    {% else %}
+                         {% if  product.quantity > 0 %}
+                         <div>
+                            <p  style=" color:darkgreen;  font-size: 13px;">Available</p>
+                         </div>
+                        
+                         {% else %}
+                         <div>
+                            <p  style="color:darkred; font-size: 13px;">Out Of Stock</p>
+                         </div>
+                        
+                         {% endif %}
+                    {% endif %}
+               </div>
+             
+                
+            
+            {% if user.is_authenticated %}
+                <div class="mb-3 mt-1 d-flex justify-content-between">
+                    <div>
+                        <button class="btn btn-outline-secondary rounded-pill mb-1"> <a style="text-decoration: none;" href="{% url 'APP:update' product.pk %}">Update</a> </button>
+                        <a class="btn btn-outline-success rounded-pill mb-1" type="submit"   style="text-decoration: none;" href="{% url 'APP:sell' product.pk %}">Sell</a>
+                    </div>
+                    <div>
+                        <h5 ><strong>৳{{product.price}}</strong></h5>
+                    </div>
+                      
+                      
+                </div>
+           
+            {% endif  %}
+        </div>
+
+    </div>
+    {% endfor %}
+    
+</div>
+{% endblock %}
+
+
